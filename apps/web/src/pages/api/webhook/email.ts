@@ -1,12 +1,18 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
+import { Resend } from 'resend'
 
-export default (req: NextApiRequest, res: NextApiResponse) => {
-  if (req.method === 'POST') {
-    // Handle email webhook payload here
-    // ...
-    console.log('req.body', req.body)
-    res.status(200).send({ status: 'Email webhook received' })
-  } else {
-    res.status(405).send({ error: 'Method Not Allowed' })
-  }
+import { TestTemplate } from 'src/modules/email'
+
+const resend = new Resend(process.env.RESEND_API_KEY)
+
+export default async (req: NextApiRequest, res: NextApiResponse) => {
+  console.log('req.body', req.body)
+  const data = await resend.emails.send({
+    from: 'alerts@jord.email',
+    to: ['jordan.lesich@gmail.com'],
+    subject: 'Hello from nouns.build!',
+    react: TestTemplate({ name: 'test' }),
+  })
+  console.log('data', data)
+  res.status(200).send(data)
 }
