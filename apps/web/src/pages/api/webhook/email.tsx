@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { Resend } from 'resend'
 
-import { TestTemplate } from 'src/modules/email'
+import VercelInviteUserEmail from 'src/modules/email/ReactEmailTest'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
@@ -11,7 +11,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     from: 'alerts@jord.email',
     to: ['jordan.lesich@gmail.com'],
     subject: 'Hello from nouns.build!',
-    react: TestTemplate({ name: 'test' }),
+    react: <VercelInviteUserEmail />,
   })
   console.log('data', data)
   res.status(200).send(data)

@@ -23,6 +23,7 @@
     "@fontsource/inter": "4.5.10",
     "@fontsource/londrina-solid": "^4.5.9",
     "@rainbow-me/rainbowkit": "^0.12.15",
+    "@react-email/components": "^0.0.7",
     "@sentry/nextjs": "^7.15.0",
     "@types/lodash": "^4.14.186",
     "@types/react-portal": "^4.0.4",
